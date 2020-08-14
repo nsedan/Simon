@@ -1,0 +1,46 @@
+* {
+	box-sizing: border-box;
+
+}
+
+body {
+	background: #fafafa;
+}
+
+button{
+    margin-left: 50%;
+    padding: 2px;
+}
+
+.button-container {
+	width: 20rem;
+	height: 20rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 0.5rem;
+    margin: 7rem;
+}
+
+
+.button.lit {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+#red {
+    background-color: red;
+    border-radius: 100% 0 0 0;
+}
+#blue {
+    background-color: blue;
+    border-radius: 0 100% 0 0;
+}
+#green {
+    background-color: green;
+    border-radius: 0 0 0 100%;
+}
+#orange {
+    background-color: orange;
+    border-radius: 0 0 100% 0;
+}
+
