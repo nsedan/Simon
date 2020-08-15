@@ -1,45 +1,51 @@
-let level = 0;
+let level = 1;
 let clicked = []
-const btnArray = ["#red", "#blue", "#green", "#orange"]
-let levelArray = []
+const btnArray = ["red", "blue", "green", "orange"]
+let levelsArray = []
+let currentLevel;
 
 const stringify = JSON.stringify
 const parse = JSON.parse
 
 // INITIAL LEVEL
-for (let i = 1; i <= 5; i++) {
-    let random = Math.floor(btnArray.length * Math.random());
-    let randomBtn = btnArray[random]
-    levelArray.push(randomBtn)
+$(document).ready(() => {
+    for (let i = 1; i <= 10; i++) {
+        let random = Math.floor(btnArray.length * Math.random());
+        let randomBtn = btnArray[random]
+        levelsArray.push(randomBtn)
+    }
+    console.log(levelsArray);
+    newLevel()
+
+})
+
+function newLevel() {
+    currentLevel = [levelsArray[levelsArray.length - level]]
+    console.log(currentLevel)
 }
-console.log(levelArray);
-
-
-
-
-
-let currentLevel = stringify(levelArray.splice(btnArray.length - level))
-console.log(currentLevel)
-
-
 
 
 
 // checking player clicks
 function checking() {
-    if (stringify(clicked).lenght === currentLevel.lenght) {
-        if (stringify(clicked) === currentLevel) {
-            console.log('%c Level Complete!', 'background: green; color: white')
-            //NEXT LEVEL
-            level++
-            console.log(level)
-            console.log(currentLevel)
-            return clicked.pop()
+    if (stringify(clicked.lenght) === stringify(currentLevel.lenght)) {
+        if (stringify(clicked) === stringify(currentLevel)) {
+            if (level === 10) {
+                console.log('%c You Won!', 'background: yellow; color: black')
+            } else {
+                console.log('%c Level Complete!', 'background: green; color: white')
+                //NEXT LEVEL
+                level++
+                clicked.pop()
+                newLevel()
+                return
+            }
         }
         else {
             console.log('%c Wrong!', 'background: red; color: white')
             clicked.length = 0;
-            level = 1 //strict mode
+            level - 1
+            newLevel()
             return
         }
 
@@ -48,19 +54,19 @@ function checking() {
 
 
 // player clicks
-$(btnArray[0]).click(function () {
-    clicked.push('#' + this.id);
+$("#red").click(function () {
+    clicked.push("red");
     checking()
 });
-$(btnArray[1]).click(function () {
-    clicked.push('#' + this.id);
+$("#blue").click(function () {
+    clicked.push("blue");
     checking()
 });
-$(btnArray[2]).click(function () {
-    clicked.push('#' + this.id);
+$("#green").click(function () {
+    clicked.push("green");
     checking()
 });
-$(btnArray[3]).click(function () {
-    clicked.push('#' + this.id);
+$("#orange").click(function () {
+    clicked.push("orange");
     checking()
 });
